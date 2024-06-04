@@ -15,6 +15,15 @@
 
 .form-input-wrapper {
     margin-bottom: 1.25rem;
+    color: var(--placeholder-color);
+}
+
+.form-errors-container {
+    margin-left: 1rem;
+}
+
+.form-errors-container p {
+    margin-bottom: 0.5rem;
 }
 
 .icon-password {
