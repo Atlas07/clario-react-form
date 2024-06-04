@@ -1,3 +1,7 @@
+.input-container {
+    position: relative;
+}
+
 .input {
     width: 100%;
     border-radius: 60px;
@@ -28,6 +32,7 @@ input::placeholder {
 .input-disabled {
     border-color: var(--disabled-color-20);
     background-color: var(--disabled-color-10);
+    cursor: not-allowed;
 }
 
 .input-success {

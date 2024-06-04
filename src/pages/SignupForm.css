@@ -12,3 +12,17 @@
     font-weight: 700;
     margin-bottom: 2.5rem;
 }
+
+.form-input-wrapper {
+    margin-bottom: 1.25rem;
+}
+
+.icon-password {
+    position: absolute;
+    top: 1.125rem;
+    right: 1rem;
+}
+
+.icon-password:hover {
+    cursor: pointer;
+}
