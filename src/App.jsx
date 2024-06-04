@@ -1,6 +1,10 @@
-function App() {
+import "./App.css"
+
+import SignupPage from "./pages/SignupPage"
+
+const App = () => {
   return (
-    <h1>Vite + React</h1>
+      <SignupPage />
   )
 }
 

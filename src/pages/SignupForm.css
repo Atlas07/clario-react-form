@@ -1,0 +1,14 @@
+.form-wrapper {
+    width: 315px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5.875rem;
+}
+
+.form-header {
+    display: flex;
+    justify-content: center;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+}
