@@ -9,16 +9,21 @@ const emailRegex = /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@
 
 const SignupForm = ({ className = "" }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false)
-    1
+    
     const handleIsPasswordShown = e => {
         e.preventDefault()
         setIsPasswordShown(!isPasswordShown)
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log("submitting...")
+    }
+
     return (
         <div className={`form-wrapper ${className}`}>
-            <h1 className='form-header'>Sign up</h1>
-            <form>
+            <h1 className="form-header">Sign up</h1>
+            <form className="form-container">
                 <Input
                     value="something"
                     type="email"
@@ -37,6 +42,8 @@ const SignupForm = ({ className = "" }) => {
                     <ErrorMessage text="Uppercase and lowercase letters" />
                     <ErrorMessage text="1 digit minimum" isSuccess={true} />
                 </div>
+
+                <button className="form-submit-btn" onClick={handleSubmit}>Sign Up</button>
             </form>
         </div>
     )

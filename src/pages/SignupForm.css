@@ -13,6 +13,11 @@
     margin-bottom: 2.5rem;
 }
 
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .form-input-wrapper {
     margin-bottom: 1.25rem;
     color: var(--placeholder-color);
@@ -33,5 +38,19 @@
 }
 
 .icon-password:hover {
+    cursor: pointer;
+}
+
+.form-submit-btn {
+    border-radius: 1.875rem;
+    /* background: linear-gradient(#e66465, #9198e5); */
+    background: linear-gradient(rgba(112, 195, 255, 1), rgba(75, 101, 255, 1));
+    color: var(--white);
+    border: 0;
+    width: 15rem;
+    height: 3rem;
+    font-weight: 700;
+    align-self: center;
+    margin-top: 2.5rem;
     cursor: pointer;
 }
