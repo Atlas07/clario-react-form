@@ -6,7 +6,7 @@ import "./SignupForm.css"
 import IconEyeCrossed from '../icons/IconEyeCrossed'
 import Input, { ErrorMessage } from '../atoms/Input'
 
-import { ERROR_KEYS, emailRegex, passwordValidation } from '../utils/formValidation'
+import { ERROR_KEYS, emailRegex, validatePassword } from '../utils/formValidation'
 
 const SignupForm = ({ className = "" }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false)
@@ -35,7 +35,7 @@ const SignupForm = ({ className = "" }) => {
                         type={isPasswordShown ? "text" : "password"}
                         label="password"
                         className="form-input-wrapper"
-                        registerProps={{ validate: passwordValidation }}
+                        registerProps={{ validate: validatePassword }}
                         icon={<IconEyeCrossed className="icon-password" onClick={handleIsPasswordShown} />}
                     />
 

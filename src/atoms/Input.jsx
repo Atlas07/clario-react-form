@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form'
 
 import "./Input.css"
 
-import { passwordValidation } from '../utils/formValidation'
+import { validatePassword } from '../utils/formValidation'
 
 export const ErrorMessage = ({
     className = "",
@@ -12,7 +12,7 @@ export const ErrorMessage = ({
     errorKey,
 }) => {
     const { watch, formState: { dirtyFields } } = useFormContext()
-    let errors = passwordValidation(watch(name) || "")
+    let errors = validatePassword(watch(name) || "")
 
     const isError = errors.length !== 0 && errors.includes(errorKey) && dirtyFields[name]
     const isSuccess = !errors.includes(errorKey) && dirtyFields[name];
