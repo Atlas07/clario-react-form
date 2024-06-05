@@ -1,47 +1,80 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useFormContext } from 'react-hook-form'
 
 import "./Input.css"
 
-export const ErrorMessage = ({ className = "", isError=false, isSuccess=false, text }) => {
+import { passwordValidation } from '../utils/formValidation'
+
+export const ErrorMessage = ({
+    className = "",
+    name,
+    text,
+    errorKey,
+}) => {
+    const { watch, formState: { dirtyFields } } = useFormContext()
+    let errors = passwordValidation(watch(name) || "")
+
+    const isError = errors.length !== 0 && errors.includes(errorKey) && dirtyFields[name]
+    const isSuccess = !errors.includes(errorKey) && dirtyFields[name];
+
     const classNames = [
         isError ? "message-error" : "",
         isSuccess ? "message-success" : "",
         className,
-    ].join("")
+    ].filter(Boolean).join("")
     return (
         <p className={classNames}>{text}</p>
     )
 }
 
-const Input = ({ className = "", type, value, placeholder = "", isError = false, isDisabled = false, isSuccess = false, icon = null }) => {
+const Input = ({
+    className = "",
+    id,
+    type,
+    label,
+    placeholder = "",
+    isDisabled = false,
+    registerProps,
+    icon = null,
+}) => {
+    const { register, formState: {errors, dirtyFields} } = useFormContext()
     const [isFocused, setIsFocused] = useState(false)
+
+    const isError = (!!errors[label]?.message || errors[label]?.message.length !== 0) && !isFocused && dirtyFields[label]
+    const isSuccess = (!errors[label]?.message || errors[label]?.message.length === 0) && !isFocused && dirtyFields[label]
+
     const classNames = [
         "input",
         isFocused ? "input-focus" : "",
         isSuccess ? "input-success" : "",
         isError ? "input-error" : "",
         isDisabled ? "input-disabled" : "",
-    ].join(" ")
+    ].filter(Boolean).join(" ")
+   
+    const {onChange, onBlur, name, ref} = register(label, registerProps)
 
-    const handleFocus = _e => {
-        setIsFocused(true)
-    }
+    const onFocus = (_e) => {
+        setIsFocused(true);
+    };
 
-    const handleBlur = _e => {
-        setIsFocused(false)
-    }
+    const handleBlur = (e) => {
+        setIsFocused(false);
+        onBlur(e)
+    };
 
     return (
         <div className={`input-container ${className}`}>
-            <input className={classNames}
+            <input
+                className={classNames}
+                id={id}
                 type={type}
-                value={value}
                 placeholder={placeholder}
-                onFocus={handleFocus}
+                ref={ref}
+                name={name}
+                onChange={onChange}
+                onFocus={onFocus}
                 onBlur={handleBlur}
-                disabled={isDisabled}
             />
-            
             {icon}
         </div>
     )
