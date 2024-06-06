@@ -12,12 +12,14 @@ export const ERROR_MAP = {
   [ERROR_KEYS.PASSWORD_DIGIT]: "At least one digit",
 };
 
+/* eslint-disable no-useless-escape */
 export const EMAIL_REGEX =
   /^(([^<>()\[\]\.,;:\s@"]+(\.[^<>()\[\]\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+/* eslint-enable no-useless-escape */
 
 export const validatePassword = (value) => {
   const errors = []
-  const trimmedValue = value.replace(/\s/g, "");
+  const trimmedValue = value.replace(/\s/g, "")
 
   if (trimmedValue.length < 8 || trimmedValue.length > 64) {
     errors.push(ERROR_KEYS.PASSWORD_LENGTH)
