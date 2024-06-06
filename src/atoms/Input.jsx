@@ -37,12 +37,12 @@ const Input = ({
     registerProps,
     icon = null,
 }) => {
-    const { register, formState: {errors, dirtyFields} } = useFormContext()
+    const { register, formState: { errors, dirtyFields } } = useFormContext()
     const [isFocused, setIsFocused] = useState(false)
+    const { onChange, onBlur, name, ref } = register(label, registerProps)
 
     const isError = (!!errors[label]?.message || errors[label]?.message.length !== 0) && !isFocused && dirtyFields[label]
     const isSuccess = (!errors[label]?.message || errors[label]?.message.length === 0) && !isFocused && dirtyFields[label]
-
     const classNames = [
         "input",
         isFocused ? "input-focus" : "",
@@ -50,15 +50,13 @@ const Input = ({
         isError ? "input-error" : "",
         isDisabled ? "input-disabled" : "",
     ].filter(Boolean).join(" ")
-   
-    const {onChange, onBlur, name, ref} = register(label, registerProps)
 
     const onFocus = (_e) => {
-        setIsFocused(true);
+        setIsFocused(true)
     };
 
     const handleBlur = (e) => {
-        setIsFocused(false);
+        setIsFocused(false)
         onBlur(e)
     };
 

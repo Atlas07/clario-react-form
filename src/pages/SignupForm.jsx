@@ -6,7 +6,7 @@ import "./SignupForm.css"
 import IconEyeCrossed from '../icons/IconEyeCrossed'
 import Input, { ErrorMessage } from '../atoms/Input'
 
-import { ERROR_KEYS, emailRegex, validatePassword } from '../utils/formValidation'
+import { ERROR_KEYS, EMAIL_REGEX, validatePassword } from '../utils/formValidation'
 
 const SignupForm = ({ className = "" }) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false)
@@ -27,7 +27,7 @@ const SignupForm = ({ className = "" }) => {
                         type="email"
                         label="email"
                         className="form-input-wrapper"
-                        registerProps={{ pattern: {value: emailRegex, message: ERROR_KEYS.EMAIL_INVALID } }}
+                        registerProps={{ pattern: {value: EMAIL_REGEX, message: ERROR_KEYS.EMAIL_INVALID } }}
                     />
 
                     <Input
@@ -48,7 +48,7 @@ const SignupForm = ({ className = "" }) => {
                         <ErrorMessage
                             text="Uppercase and lowercase letters"
                             name="password"
-                            errorKey={ERROR_KEYS.PASSWORD_UPPERCASE}
+                            errorKey={ERROR_KEYS.PASSWORD_MIXED_CASE}
                         />
                         <ErrorMessage
                             text="1 digit minimum"
