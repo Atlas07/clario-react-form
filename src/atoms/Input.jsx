@@ -37,12 +37,15 @@ const Input = ({
     registerProps,
     icon = null,
 }) => {
-    const { register, formState: { errors, dirtyFields } } = useFormContext()
+    const { watch, register, formState: { errors, dirtyFields } } = useFormContext()
     const [isFocused, setIsFocused] = useState(false)
     const { onChange, onBlur, name, ref } = register(label, registerProps)
 
     const isError = (!!errors[label]?.message || errors[label]?.message.length !== 0) && !isFocused && dirtyFields[label]
-    const isSuccess = (!errors[label]?.message || errors[label]?.message.length === 0) && !isFocused && dirtyFields[label]
+    const isSuccess = (!errors[label]?.message || errors[label]?.message.length === 0)
+        && !isFocused
+        && dirtyFields[label]
+        && watch(name).length
     const classNames = [
         "input",
         isFocused ? "input-focus" : "",
